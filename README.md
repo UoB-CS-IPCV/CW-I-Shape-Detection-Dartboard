@@ -19,7 +19,37 @@ _(15 marks)_
 
 This subtask requires you to build an object detector that recognises dartboards. The initial steps of this subtask introduce you to OpenCV’s boosting tool, which you can use to construct an object detector that utilises Haar-like features. 
 
-1. Create virtual environment with Python 3.6 `conda create -n ipcv36 python=3.6`, activate your environment `conda activate ipcv36`, and install OpenCV packages `conda install -c menpo opencv`. Check OpenCV verion with `python -c 'import cv2; print(cv2.__version__)'`. It should be 3.4.x. 
+1. Create virtual environment with Python 3.6 `conda create -n ipcv36 python=3.6`, activate your environment `conda activate ipcv36`, and install OpenCV packages `conda install -c menpo opencv`. Check OpenCV verion with `python -c 'import cv2; print(cv2.__version__)'`. It should be 3.4.x.
+   
+   <details>
+    <summary> Python 3.6 Installation Troubleshooting </summary>
+    
+     > 1. Download installer from https://www.python.org/downloads/release/python-368/
+     > 2. Create virtual environment with `python3 -m venv ipcv36`, then activate your environment `source ipcv36/bin/activate`
+   </details>
+
+   <details>
+   <summary> OpenCV 3.4 for Windows Troubleshooting </summary>
+    
+     > 1. Download OpenCV3.4.3 from [HERE](https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.4.3/). 
+     > 2. Extract it to `YOURPATH`
+   </details>
+
+   <details>
+    <summary> OpenCV 3.4 for macOS Troubleshooting </summary>
+     
+     > When installing OpenCV 3.4 and Python 3.6 on macOS, encountering the issue of opencv_createsamples and opencv_traincascade commands not being found.
+     > 1. Confirm OpenCV Version: Ensure you have installed a version of OpenCV that includes these tools. Some OpenCV versions installed via pip may not include the command-line tools, containing only the Python library. A Homebrew installation usually includes the full OpenCV suite. Please install the opencv 3.4.x with this commond (`brew install opencv@3`).
+     > 2. Check the OpenCV Installation Directory:
+     > If you have installed OpenCV via Homebrew, check the /opt/homebrew/opt/opencv@3 directory (the version number may vary based on your installation). This directory should contain tools including opencv_createsamples.
+     > 3. Add to PATH:
+     > If you have located the opencv_createsamples installation directory, you need to add it to your PATH. Edit your .zshrc file and include the following line: `nano ~/.zshrc`, Copy this line to your zshrc `export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"`. This path assumes opencv_createsamples is in the bin folder of the OpenCV directory installed by Homebrew. 
+     > 4. Reload the Configuration File:
+     > Save the changes to your .zshrc file and run in the terminal: `source ~/.zshrc`
+     > 5. Verify if Commands are Available:
+     > Type `opencv_createsamples` or `opencv_traincascade` to verify if the commands are now in your PATH.
+  </details>
+
 2. You are given `dart.bmp` containing a dartboard that can serve as a prototype for generating a whole set of positive training images. 
 3. Unzip `negatives.zip` and keep all negative images in a directory called `negatives`. A text file `negatives.dat` lists all filenames in the directory.
 4. Create your positive training data set of 500 samples of dartboards from the single prototype image provided. To do this, you can run the tool `opencv_createsamples` via the following single command and execute it in a folder that contains the negatives.dat file, the dart.bmp image and the negatives folder: 
@@ -27,7 +57,7 @@ This subtask requires you to build an object detector that recognises dartboards
 ```
 opencv_createsamples -img dart.bmp -vec dart.vec  -w 20 -h 20 -num 500 -maxidev 80 -maxxangle 0.8 -maxyangle 0.8 -maxzangle 0.2
 ```
-For Windows, you might need to download OpenCV3.4.3 from [HERE](https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.4.3/). Extract it to `YOURPATH`, then use `YOURPATH\opencv\build\x64\vc15\bin\opencv_createsamples.exe`.
+For Windows, you might use `YOURPATH\opencv\build\x64\vc15\bin\opencv_createsamples.exe`.
 
 5. This will create 500 tiny 20×20 images of dartboards (later used as positive training samples) and store in the file `dart.vec`, which contains all these 500 small sample images. Each of the sample images is created by randomly changing viewing angle and contrast (up to the maximum values specified) to reflect the possible variability of viewing parameters in real images better.
 6. Now use the created positive image set to train a dartboard detector via AdaBoost. To do this, create a directory called `Dartboardcascade` in your working directory. Then run the `opencv_traincascade` tool with the following parameters as a single command in your working directory:
