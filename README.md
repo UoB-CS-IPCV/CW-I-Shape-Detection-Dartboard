@@ -25,7 +25,7 @@ This subtask requires you to build an object detector that recognises dartboards
     <summary> Python 3.6 Installation Troubleshooting </summary>
     
      > 1. Download installer from https://www.python.org/downloads/release/python-368/
-     > 2. Create virtual environment with `python3 -m venv ipcv36`, then activate your environment `source ipcv36/bin/activate`
+     > 2. Create virtual environment with `python3.6 -m venv ipcv36` (if doesn't work, try `python3 -m venv ipcv36`), then activate your environment `source ipcv36/bin/activate`
    </details>
 
    <details>
