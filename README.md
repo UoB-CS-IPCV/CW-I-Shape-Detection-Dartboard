@@ -41,7 +41,7 @@ This subtask requires you to build an object detector that recognises dartboards
      > When installing OpenCV 3.4 and Python 3.6 on macOS, encountering the issue of opencv_createsamples and opencv_traincascade commands not being found.
      > 1. Confirm OpenCV Version: Ensure you have installed a version of OpenCV that includes these tools. Some OpenCV versions installed via pip may not include the command-line tools, containing only the Python library. A Homebrew installation usually includes the full OpenCV suite. Please install the opencv 3.4.x with this commond (`brew install opencv@3`).
      > 2. Check the OpenCV Installation Directory:
-     > If you have installed OpenCV via Homebrew, check the /opt/homebrew/opt/opencv@3 directory (the version number may vary based on your installation). This directory should contain tools including opencv_createsamples.
+     > If you have installed OpenCV via Homebrew, check the `/opt/homebrew/opt/opencv@3/bin` directory (the version number may vary based on your installation). This directory should contain tools including opencv_createsamples.
      > 3. Add to PATH:
      > If you have located the opencv_createsamples installation directory, you need to add it to your PATH. Edit your .zshrc file and include the following line: `nano ~/.zshrc`, Copy this line to your zshrc `export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"`. This path assumes opencv_createsamples is in the bin folder of the OpenCV directory installed by Homebrew. 
      > 4. Reload the Configuration File:
@@ -78,11 +78,12 @@ a)	TRAINING PERFORMANCE: The training tool produces a strong classifier in stage
 2. Produce this graph in your report and briefly interpret what it shows.
 
 b)	TESTING PERFORMANCE: 
-1. Test the dartboard detector’s performance on all given example images. 
-2. Produce the result images with bounding boxes drawn around detected dartboard candidates (in green) and ground truth (in red) and include 3 of them in your report.  
-3. In tabular form, calculate the overall TPR and F1 score per image and the average of these scores across the 16 images. 
-4. Briefly discuss the performance achieved.
-5. Give reasons for the different TPR values compared to the performance achieved in a).
+1. In face.py from Lab4, change "frontalface.xml" to "Dartboardcascade/cascade.xml"
+2. Test the dartboard detector’s performance on all given example images. 
+3. Produce the result images with bounding boxes drawn around detected dartboard candidates (in green) and ground truth (in red) and include 3 of them in your report.  
+4. In tabular form, calculate the overall TPR and F1 score per image and the average of these scores across the 16 images. 
+5. Briefly discuss the performance achieved.
+6. Give reasons for the different TPR values compared to the performance achieved in a).
 
 ## :red_circle: Subtask 2: Integration with Shape Detectors
 _(15 marks)_
