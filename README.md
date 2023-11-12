@@ -17,7 +17,7 @@ Detecting (locating & classifying) instances of an object class in images is an 
 ## :red_circle: Subtask 1: The Dartboard Detector
 _(15 marks)_
 
-This subtask requires you to build an object detector that recognises dartboards. The initial steps of this subtask introduce you to OpenCV’s boosting tool, which you can use to construct an object detector that utilises Haar-like features. Training the boosted cascade of weak classifiers works with OpenCV 3.4 which requires Python 3.6. If you use Mac M1/M2, we strongly recommend you train your detector on the lab machine, and they you may transfer your model (cascade.xml) to work on your own machine.
+This subtask requires you to build an object detector that recognises dartboards. The initial steps of this subtask introduce you to OpenCV’s boosting tool, which you can use to construct an object detector that utilises Haar-like features. Training the boosted cascade of weak classifiers works with OpenCV 3.4 which requires Python 3.6. If you use Mac M1/M2, we strongly recommend you train your detector on the lab machine, and then you may transfer your model (cascade.xml) to work on your own machine.
 
 1. For the machine in Lab2.11, load conda with `module load anaconda/3-2023`. Create virtual environment with Python 3.6 `conda create -n ipcv36 python=3.6`, activate your environment `conda activate ipcv36`, and install OpenCV packages `conda install -c menpo opencv`. Check OpenCV verion with `python -c 'import cv2; print(cv2.__version__)'`. It should be 3.4.x. 
    
