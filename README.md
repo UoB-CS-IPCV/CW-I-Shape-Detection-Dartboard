@@ -17,7 +17,7 @@ Detecting (locating & classifying) instances of an object class in images is an 
 ## :red_circle: Subtask 1: The Dartboard Detector
 _(15 marks)_
 
-This subtask requires you to build an object detector that recognises dartboards. The initial steps of this subtask introduce you to OpenCV’s boosting tool, which you can use to construct an object detector that utilises Haar-like features. 
+This subtask requires you to build an object detector that recognises dartboards. The initial steps of this subtask introduce you to OpenCV’s boosting tool, which you can use to construct an object detector that utilises Haar-like features. Training the boosted cascade of weak classifiers works with OpenCV 3.4 which requires Python 3.6. If you use Mac M1/M2, we strongly recommend you train your detector on the lab machine, and they you may transfer your model (cascade.xml) to work on your own machine.
 
 1. For the machine in Lab2.11, load conda with `module load anaconda/3-2023`. Create virtual environment with Python 3.6 `conda create -n ipcv36 python=3.6`, activate your environment `conda activate ipcv36`, and install OpenCV packages `conda install -c menpo opencv`. Check OpenCV verion with `python -c 'import cv2; print(cv2.__version__)'`. It should be 3.4.x. 
    
@@ -42,12 +42,13 @@ This subtask requires you to build an object detector that recognises dartboards
      > 1. Confirm OpenCV Version: Ensure you have installed a version of OpenCV that includes these tools. Some OpenCV versions installed via pip may not include the command-line tools, containing only the Python library. A Homebrew installation usually includes the full OpenCV suite. Please install the opencv 3.4.x with this commond (`brew install opencv@3`).
      > 2. Check the OpenCV Installation Directory:
      > If you have installed OpenCV via Homebrew, check the `/opt/homebrew/opt/opencv@3/bin` directory (the version number may vary based on your installation). This directory should contain tools including opencv_createsamples.
-     > 3. Add to PATH:
+     > 3. You might use `/opt/homebrew/opt/opencv@3/bin/opencv_createsamples` or add to PATH:
      > If you have located the opencv_createsamples installation directory, you need to add it to your PATH. Edit your .zshrc file and include the following line: `nano ~/.zshrc`, Copy this line to your zshrc `export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"`. This path assumes opencv_createsamples is in the bin folder of the OpenCV directory installed by Homebrew. 
      > 4. Reload the Configuration File:
      > Save the changes to your .zshrc file and run in the terminal: `source ~/.zshrc`
      > 5. Verify if Commands are Available:
      > Type `opencv_createsamples` or `opencv_traincascade` to verify if the commands are now in your PATH.
+     > 6. If the training procedure exits with `Required leaf false alarm rate achieved. Branch training terminated.`, please use the lab machine in Lab2.11.
   </details>
 
 2. You are given `dart.bmp` containing a dartboard that can serve as a prototype for generating a whole set of positive training images. 
@@ -69,7 +70,7 @@ For Windows, you might use `YOURPATH\opencv\build\x64\vc15\bin\opencv_traincasca
 7. This will start the boosting procedure and construct a strong classifier stored in the file `cascade.xml`, which you can load in an OpenCV program for later detection as done in Lab4: Face Detection (`face.py`). You might need the change `model = cv2.CascadeClassifier()` to `model = cv2.CascadeClassifier(cascade_name)` or remove `cv2.samples.findFile`.
 8. During boosting the tool will provide updates about the machine learning in progress. Here is an example output when using 1000 instead of 500 samples…
 <img src="https://github.com/UoB-CS-IPCV/CW-I-Shape-Detection/blob/main/trainresult.png" height=200> 
-The boosting procedure considers all the positive images and employs sampled patches from the negative images to learn. The detector window will be 20×20. To speed up the detection process, the strong classifier is built in 3 parts (numStages) to form an attentional cascade as discussed in the Viola-Jones paper. The training procedure may take up to 15min for reasons discussed in the lectures – stop the training and restart if it exceeds this time. 
+The boosting procedure considers all the positive images and employs sampled patches from the negative images to learn. The detector window will be 20×20. To speed up the detection process, the strong classifier is built in 3 parts (numStages) to form an attentional cascade as discussed in the Viola-Jones paper. The training procedure may take up to 5min for reasons discussed in the lectures – stop the training and restart if it exceeds this time. If the training procedure exits with "Required leaf false alarm rate achieved. Branch training terminated.", please use the lab machine in Lab2.11.
 
 ### What to say in your report (roughly 1 page): 
 
@@ -77,13 +78,12 @@ a)	TRAINING PERFORMANCE: The training tool produces a strong classifier in stage
 1. Collate this information into a graph that plots TPR and FPR on the training data for the three different stages. 
 2. Produce this graph in your report and briefly interpret what it shows.
 
-b)	TESTING PERFORMANCE: 
-1. In face.py from Lab4, change "frontalface.xml" to "Dartboardcascade/cascade.xml"
-2. Test the dartboard detector’s performance on all given example images. 
-3. Produce the result images with bounding boxes drawn around detected dartboard candidates (in green) and ground truth (in red) and include 3 of them in your report.  
-4. In tabular form, calculate the overall TPR and F1 score per image and the average of these scores across the 16 images. 
-5. Briefly discuss the performance achieved.
-6. Give reasons for the different TPR values compared to the performance achieved in a).
+b)	TESTING PERFORMANCE: In face.py from Lab4, change "frontalface.xml" to "Dartboardcascade/cascade.xml". Now, you may go back to use Python 3.8.
+1. Test the dartboard detector’s performance on all given example images. 
+2. Produce the result images with bounding boxes drawn around detected dartboard candidates (in green) and ground truth (in red) and include 3 of them in your report.  
+3. In tabular form, calculate the overall TPR and F1 score per image and the average of these scores across the 16 images. 
+4. Briefly discuss the performance achieved.
+5. Give reasons for the different TPR values compared to the performance achieved in a).
 
 ## :red_circle: Subtask 2: Integration with Shape Detectors
 _(15 marks)_
