@@ -42,17 +42,6 @@ This subtask requires you to build an object detector that recognises dartboards
      >
      > If you use an ARM-based system, please try with Conda version before 23.0 (e.g., 22.9.0). If it still does not work, please use the Lab machine in 2.11.
      > 
-     > ~~When installing OpenCV 3.4 and Python 3.6 on macOS, encountering the issue of opencv_createsamples and opencv_traincascade commands not being found~~.
-     > 1. ~~Confirm OpenCV Version: Ensure you have installed a version of OpenCV that includes these tools. Some OpenCV versions installed via pip may not include the command-line tools, containing only the Python library. A Homebrew installation usually includes the full OpenCV suite. Please install the opencv 3.4.x with this commond (`brew install opencv@3`)~~.
-     > 2. ~~Check the OpenCV Installation Directory:~~
-     > ~~If you have installed OpenCV via Homebrew, check the `/opt/homebrew/opt/opencv@3/bin` directory (the version number may vary based on your installation). This directory should contain tools including opencv_createsamples~~.
-     > 3. ~~You might use `/opt/homebrew/opt/opencv@3/bin/opencv_createsamples` or add to PATH~~:
-     > ~~If you have located the opencv_createsamples installation directory, you need to add it to your PATH. Edit your .zshrc file and include the following line: `nano ~/.zshrc`, Copy this line to your zshrc `export PATH="/opt/homebrew/opt/opencv@3/bin:$PATH"`. This path assumes opencv_createsamples is in the bin folder of the OpenCV directory installed by Homebrew~~. 
-     > 4. ~~Reload the Configuration File:~~
-     > ~~Save the changes to your .zshrc file and run in the terminal: `source ~/.zshrc`~~
-     > 5. ~~Verify if Commands are Available:~~
-     > ~~Type `opencv_createsamples` or `opencv_traincascade` to verify if the commands are now in your PATH.~~
-     > 6. ~~If the training procedure exits with `Required leaf false alarm rate achieved. Branch training terminated.`, please use the lab machine in Lab2.11.~~
   </details>
 
 2. You are given `dart.bmp` containing a dartboard that can serve as a prototype for generating a whole set of positive training images. 
