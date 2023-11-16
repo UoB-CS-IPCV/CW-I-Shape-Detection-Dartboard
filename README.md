@@ -40,7 +40,7 @@ This subtask requires you to build an object detector that recognises dartboards
     
      > If you use an Intel-based Mac, you should not have a problem of installing Python 3.6 and OpenCV 3.4. 
      >
-     > If you use an ARM-based system, please use the Lab machine in 2.11.
+     > If you use an ARM-based system, please try with Conda version before 23.0 (e.g., 22.9.0). If it still does not work, please use the Lab machine in 2.11.
      > 
      > ~~When installing OpenCV 3.4 and Python 3.6 on macOS, encountering the issue of opencv_createsamples and opencv_traincascade commands not being found~~.
      > 1. ~~Confirm OpenCV Version: Ensure you have installed a version of OpenCV that includes these tools. Some OpenCV versions installed via pip may not include the command-line tools, containing only the Python library. A Homebrew installation usually includes the full OpenCV suite. Please install the opencv 3.4.x with this commond (`brew install opencv@3`)~~.
