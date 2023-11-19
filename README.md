@@ -73,7 +73,7 @@ a)	TRAINING PERFORMANCE: The training tool produces a strong classifier in stage
 
 b)	TESTING PERFORMANCE: In face.py from Lab4, change "frontalface.xml" to "Dartboardcascade/cascade.xml". Now, you may go back to use Python 3.8.
 1. Test the dartboard detector’s performance on all given example images. 
-2. Produce the result images with bounding boxes drawn around detected dartboard candidates (in green) and ground truth (in red) and include 3 of them in your report.  
+2. Produce the result images with bounding boxes drawn around detected dartboard candidates (in green) and ground truth (in red) and include 3 of them in your report. Please define ground truth yourself. 
 3. In tabular form, calculate the overall TPR and F1 score per image and the average of these scores across the 16 images. 
 4. Briefly discuss the performance achieved.
 5. Give reasons for the different TPR values compared to the performance achieved in a).
