@@ -62,7 +62,7 @@ For Windows, you might use `YOURPATH\opencv\build\x64\vc15\bin\opencv_traincasca
 
 7. This will start the boosting procedure and construct a strong classifier stored in the file `cascade.xml`, which you can load in an OpenCV program for later detection as done in Lab4: Face Detection (`face.py`). You might need the change `model = cv2.CascadeClassifier()` to `model = cv2.CascadeClassifier(cascade_name)` or remove `cv2.samples.findFile`.
 8. During boosting the tool will provide updates about the machine learning in progress. Here is an example output when using 1000 instead of 500 samples…
-<img src="https://github.com/UoB-CS-IPCV/CW-I-Shape-Detection/blob/main/trainresult.png" height=200> 
+<img src="trainresult.png" height=200> 
 The boosting procedure considers all the positive images and employs sampled patches from the negative images to learn. The detector window will be 20×20. To speed up the detection process, the strong classifier is built in 3 parts (numStages) to form an attentional cascade as discussed in the Viola-Jones paper. The training procedure may take up to 5min for reasons discussed in the lectures – stop the training and restart if it exceeds this time. If the training procedure exits with "Required leaf false alarm rate achieved. Branch training terminated.", please use the lab machine in Lab2.11.
 
 ### What to say in your report (roughly 1 page): 
